@@ -7,7 +7,7 @@ import pandas as pd
 from joblib import load, dump
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/predict": {"origins": "*"}})
 
 # Load or train the SVM model
 try:

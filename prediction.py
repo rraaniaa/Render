@@ -11,28 +11,20 @@ CORS(app)
 
 # Load or train the SVM model
 try:
-    model = load('C:/Users/rania/desktop/svm_model.joblib')
-    scaler = load('C:/Users/rania/desktop/scaler.joblib')
+    model = load('svm_model.joblib')
+    scaler = load('scaler.joblib')
 except FileNotFoundError:
-    # Load the dataset (UCI Heart Disease, space-separated, no headers)
     columns = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 
                'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal', 'target']
-    data = pd.read_csv('C:/Users/rania/desktop/heart.dat', sep='\s+', names=columns)
+    data = pd.read_csv('heart.dat', sep='\s+', names=columns)
     X = data.drop('target', axis=1)
     y = data['target']
-    
-    # Initialize and fit the scaler
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
-    
-    # Train the SVM model
     model = SVC(kernel='linear', C=0.1, gamma='scale', probability=True, random_state=42)
     model.fit(X_scaled, y)
-    
-    # Save the model and scaler
-    dump(model, 'C:/Users/rania/desktop/svm_model.joblib')
-    dump(scaler, 'C:/Users/rania/desktop/scaler.joblib')
-
+    dump(model, 'svm_model.joblib')
+    dump(scaler, 'scaler.joblib')
 
 # Normalization parameters from your EDA (for reference in risk factor analysis)
 normalization_params = {

@@ -131,6 +131,16 @@ def generate_recommendations(prediction, risk_factors, form_data):
     
     return recommendations
 
+@app.route('/projet', methods=['GET'])
+def projet():
+    return jsonify({'message': 'Page du projet. Envoyez une requête POST à /predict pour des prédictions.'}), 200
+
+
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({'message': 'Bienvenue sur l\'API de prédiction des maladies cardiaques ! Utilisez POST /predict pour faire des prédictions.'}), 200
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:

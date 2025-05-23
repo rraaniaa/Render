@@ -728,13 +728,15 @@
                 return;
             }
             
-            fetch('http://localhost:5000/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
+
+
+            fetch('https://ranich.onrender.com/predict', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+})
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP ${response.status}`);

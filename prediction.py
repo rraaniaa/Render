@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
@@ -133,7 +133,7 @@ def generate_recommendations(prediction, risk_factors, form_data):
 
 @app.route('/projet', methods=['GET'])
 def projet():
-    return jsonify({'message': 'Page du projet. Envoyez une requête POST à /predict pour des prédictions.'}), 200
+    return render_template('projet.html')
 
 
 @app.route('/', methods=['GET'])
